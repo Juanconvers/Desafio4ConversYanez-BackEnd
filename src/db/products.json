@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Azucar",
+        "description": "La sonrisa",
+        "price": 5000,
+        "stock": 14,
+        "code": "A433",
+        "thumbnail": [],
+        "id": "ed278bf2d3ebbc8b5af6"
+    },
+    {
+        "title": "Jugo Tuttifrutti",
+        "description": "Re-fresco",
+        "price": 200,
+        "stock": 18,
+        "code": "Y266",
+        "thumbnail": [],
+        "id": "e4cf5156ce4036c39d2c"
+    },
+    {
+        "title": "Carnes rojas",
+        "description": "Calidad superior",
+        "price": 32000,
+        "stock": 26,
+        "code": "L1253",
+        "thumbnail": [],
+        "id": "7f12a93176d27ae4b34c"
+    }
+]
