@@ -15,13 +15,19 @@ productsRouter.get('/', async (req, res) => {
     const limite = parseInt(limit)
         if (limite || limite > 0) { 
             const productosLimite = productos.slice(0, limit)
-            res.status(200).send(productosLimite)
+            res.render('templates/products', {
+                mostrarProductos: true,
+                productos: productosLimite,
+                css: 'product.css'
+            })
             }else{
                 res.status(400).send("Error al consultar clientes, por favor ingresar un número válido - Queries");
             }
     }catch (error) {
-        res.status(500).send(`Error interno del servidor - Consulta productos: ${error}`)
-    }
+        res.render('templates/error', {
+           error: error,
+         })
+        }
 })
 
 productsRouter.get('/:pid', async (req, res) => {
