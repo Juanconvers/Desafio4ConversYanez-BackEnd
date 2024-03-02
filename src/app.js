@@ -3,9 +3,10 @@ import express from "express";
 import productsRouter from './routes/ProductsRouter.js';
 import upload from "./config/multer.js";
 import cartRouter from "./routes/cartRouter.js";
+import { Server, Socket } from "socket.io";
 import { engine } from 'express-handlebars'
 import { __dirname } from "./path.js";
-import { Server, Socket } from "socket.io";
+
 
 console.log(__dirname)
 
@@ -18,7 +19,7 @@ const server = app.listen(PORT,() => {
     console.log(`Server on port ${PORT}`)
 })
 
-const io = Server(server)
+const io = new Server(server)
 
 //Middlewares
 app.use(express.json())
@@ -29,7 +30,18 @@ app.set('views', __dirname + '/views')
 
 io.on('connection', (socket) => {
     console.log("Conección con SOCKET.IO realizada")
+
+    socket.on('movimiento', info => { 
+        console.log(info)
+    })
+
+    socket.on('rendirse', info => { 
+        console.log(info)
+        socket.emit('mensaje-jugador', "Te has rendido") 
+        socket.broadcast.emit('rendicion', "El jugador se ha rendido") 
+    })
 })
+
 
 //Routes
 app.use('/api/products', productsRouter)
