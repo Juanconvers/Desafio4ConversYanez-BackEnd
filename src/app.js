@@ -23,7 +23,6 @@ const io = new Server(server)
 
 //Middlewares
 app.use(express.json())
-app.use('/static', express.static(__dirname + '/public'))
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
 app.set('views', __dirname + '/views')
@@ -44,6 +43,7 @@ io.on('connection', (socket) => {
 
 
 //Routes
+app.use('/static', express.static(__dirname + '/public'))
 app.use('/api/products', productsRouter, express.static(__dirname + '/public'))
 app.use('/api/cart', cartRouter)
 app.post('/upload', upload.single('product'), (req, res) => {
